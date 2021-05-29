@@ -1,0 +1,27 @@
+package  com.tenniscourts.reservations ;
+
+import  com.tenniscourts.config.BaseRestController ;
+import  lombok.AllArgsConstructor ;
+import  org.springframework.http.ResponseEntity ;
+
+@AllArgsConstructor
+public  class  ReservationController  extends  BaseRestController {
+
+    private  final  ReservationService reservationService;
+
+    public  ResponseEntity < Void >  bookReservation ( CreateReservationRequestDTO  createReservationRequestDTO ) {
+        retornar  ResponseEntity . criado (locationByEntity (reservationService . bookReservation (createReservationRequestDTO) . getId ())) . construir();
+    }
+
+    public  ResponseEntity < ReservationDTO >  findReservation ( Long  reservationId ) {
+        retornar  ResponseEntity . ok (reservationService . findReservation (reservationId));
+    }
+
+    public  ResponseEntity < ReservationDTO >  cancelReservation ( Long  reservationId ) {
+        retornar  ResponseEntity . ok (reservationService . cancelReservation (reservationId));
+    }
+
+    public  ResponseEntity < ReservationDTO >  rescheduleReservation ( Long  reservationId , Long  scheduleId ) {
+        retornar  ResponseEntity . ok (reservationService . rescheduleReservation (reservationId, scheduleId));
+    }
+}
